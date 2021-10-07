@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Experience = () => {
-  return 'hello';
+const Experience = (props) => {
+  return <div>Last section</div>;
 };
 
 export default Experience;
