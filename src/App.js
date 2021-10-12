@@ -9,15 +9,29 @@ class App extends Component {
     super(props);
 
     this.state = {
-      value: '',
+      name: '',
+      email: '',
+      number: '',
     };
   }
 
+  handleGeneral = (e) => {
+    this.setState({
+      name: e.target.value,
+    });
+  };
+
   render() {
+    const { name, email, number } = this.state;
     return (
       <div className="App">
         <Header />
-        <General />
+        <General
+          name={name}
+          email={email}
+          number={number}
+          handleGeneral={this.handleGeneral}
+        />
         <Education />
         <Experience />
       </div>
