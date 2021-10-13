@@ -9,6 +9,7 @@ class App extends Component {
     super(props);
 
     this.state = {
+      educationList: [{ school: '', program: '', degree: '', city: '' }],
       general: {
         name: '',
         email: '',
@@ -36,10 +37,17 @@ class App extends Component {
     });
   };
 
-  handleEducation = (e) => {
-    this.setState({
-      education: { [e.target.name]: e.target.value },
-    });
+  // handleEducation = (e) => {
+  //   this.setState({
+  //     education: { [e.target.name]: e.target.value },
+  //   });
+  // };
+
+  //copying array of objects and setting whole array to state
+  handleEducation = (e, i) => {
+    let educationCopy = this.state.educationList;
+    educationCopy[i][e.target.name] = e.target.value;
+    this.setState({ educationList: educationCopy });
   };
 
   handleExperience = (e) => {
@@ -48,10 +56,22 @@ class App extends Component {
     });
   };
 
+  addInfo = () => {
+    this.setState({
+      educationList: this.state.educationList.concat({
+        school: '',
+        program: '',
+        degree: '',
+        city: '',
+      }),
+    });
+  };
+
   render() {
     const { name, email, number, address, description } = this.state.general;
-    const { school, program, degree, city } = this.state.education;
+    // const { school, program, degree, city } = this.state.education;
     const { company, position, mainTask } = this.state.experience;
+    const { educationList } = this.state;
     return (
       <div className="App">
         <Header />
@@ -63,19 +83,32 @@ class App extends Component {
           description={description}
           handleGeneral={this.handleGeneral}
         />
-        <Education
+        {educationList.map((education, i) => {
+          return (
+            <Education
+              id={i}
+              school={education.school}
+              program={education.program}
+              degree={education.degree}
+              city={education.city}
+              handleEducation={(e) => this.handleEducation(e, i)}
+            />
+          );
+        })}
+        {/* <Education
           school={school}
           program={program}
           degree={degree}
           city={city}
           handleEducation={this.handleEducation}
-        />
+        /> */}
         <Experience
           company={company}
           position={position}
           mainTask={mainTask}
           handleExperience={this.handleExperience}
         />
+        <button onClick={this.addInfo}>Add</button>
       </div>
     );
   }
