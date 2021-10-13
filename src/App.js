@@ -16,7 +16,17 @@ class App extends Component {
         address: '',
         description: '',
       },
-      education: {},
+      education: {
+        school: '',
+        program: '',
+        degree: '',
+        city: '',
+      },
+      experience: {
+        company: '',
+        position: '',
+        mainTask: '',
+      },
     };
   }
 
@@ -26,8 +36,22 @@ class App extends Component {
     });
   };
 
+  handleEducation = (e) => {
+    this.setState({
+      education: { [e.target.name]: e.target.value },
+    });
+  };
+
+  handleExperience = (e) => {
+    this.setState({
+      experience: { [e.target.name]: e.target.value },
+    });
+  };
+
   render() {
     const { name, email, number, address, description } = this.state.general;
+    const { school, program, degree, city } = this.state.education;
+    const { company, position, mainTask } = this.state.experience;
     return (
       <div className="App">
         <Header />
@@ -39,8 +63,19 @@ class App extends Component {
           description={description}
           handleGeneral={this.handleGeneral}
         />
-        <Education />
-        <Experience />
+        <Education
+          school={school}
+          program={program}
+          degree={degree}
+          city={city}
+          handleEducation={this.handleEducation}
+        />
+        <Experience
+          company={company}
+          position={position}
+          mainTask={mainTask}
+          handleExperience={this.handleExperience}
+        />
       </div>
     );
   }

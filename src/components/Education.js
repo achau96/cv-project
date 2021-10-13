@@ -10,24 +10,28 @@ const Education = (props) => {
           name="school"
           type="text"
           placeholder="School"
+          onChange={props.handleEducation}
         ></input>
         <input
           className="inputText"
           name="program"
           type="text"
           placeholder="Program"
+          onChange={props.handleEducation}
         ></input>
         <input
           className="inputText"
           name="degree"
           type="text"
           placeholder="Degree"
+          onChange={props.handleEducation}
         ></input>
         <input
           className="inputText"
           name="city"
           type="text"
           placeholder="City"
+          onChange={props.handleEducation}
         ></input>
         <div className="dateInput">
           From: <input type="date"></input>
@@ -36,6 +40,7 @@ const Education = (props) => {
           To:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="date"></input>
         </div>
       </form>
+      {console.log(props)}
     </div>
   );
 };
