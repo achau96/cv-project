@@ -26,10 +26,18 @@ const General = (props) => {
         placeholder="Phone Number"
         onChange={props.handleGeneral}
       ></input>
-      <input className="inputText" type="text" placeholder="Address"></input>
+      <input
+        className="inputText"
+        name="address"
+        type="text"
+        placeholder="Address"
+        onChange={props.handleGeneral}
+      ></input>
       <textarea
         className="inputText description"
+        name="description"
         placeholder="Description..."
+        onChange={props.handleGeneral}
       ></textarea>
       {console.log(props)}
     </div>
