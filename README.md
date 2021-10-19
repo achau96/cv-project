@@ -7,4 +7,4 @@ What Did I Learn?
    });
    };
    Created single function to handle the multiple inputs in a component.
-3.
+3. Adjusted functions and state to allow multiple education/experience.

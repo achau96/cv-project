@@ -39,8 +39,8 @@ const Education = (props) => {
         <div className="dateInput">
           To:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="date"></input>
         </div>
+        <div onClick={(e) => props.removeEducation(e, props.id)}>Remove</div>
       </form>
-      {console.log(props)}
     </div>
   );
 };

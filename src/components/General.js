@@ -39,7 +39,6 @@ const General = (props) => {
         placeholder="Description..."
         onChange={props.handleGeneral}
       ></textarea>
-      {console.log(props)}
     </div>
   );
 };

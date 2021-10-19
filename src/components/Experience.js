@@ -32,7 +32,6 @@ const Experience = (props) => {
           To:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="date"></input>
         </div>
       </form>
-      {console.log(props)}
     </div>
   );
 };
