@@ -112,6 +112,7 @@ class App extends Component {
   };
 
   submitForm = (e) => {
+    console.log('This is supposed to push data onto a backend');
     console.log(this.state);
   };
   render() {
