@@ -11,13 +11,25 @@ class App extends Component {
     this.state = {
       counterID: 0,
       experienceCounter: 0,
-      educationList: [{ id: 0, school: '', program: '', degree: '', city: '' }],
+      educationList: [
+        {
+          id: 0,
+          school: '',
+          program: '',
+          degree: '',
+          city: '',
+          startDate: '',
+          endDate: '',
+        },
+      ],
       experienceList: [
         {
           id: 0,
           company: '',
           position: '',
           mainTask: '',
+          startDate: '',
+          endDate: '',
         },
       ],
       general: {
@@ -48,10 +60,10 @@ class App extends Component {
     this.setState({ educationList: educationCopy });
   };
 
-  handleExperience = (e) => {
-    this.setState({
-      experience: { [e.target.name]: e.target.value },
-    });
+  handleExperience = (e, i) => {
+    let experienceCopy = this.state.experienceList;
+    experienceCopy[i][e.target.name] = e.target.value;
+    this.setState({ experienceList: experienceCopy });
   };
 
   addEducation = () => {
@@ -64,6 +76,8 @@ class App extends Component {
           program: '',
           degree: '',
           city: '',
+          startDate: '',
+          endDate: '',
         }),
       };
     });
@@ -86,8 +100,19 @@ class App extends Component {
           company: '',
           position: '',
           mainTask: '',
+          startDate: '',
+          endDate: '',
         }),
       };
+    });
+  };
+
+  removeExperience = (e, id) => {
+    let experienceCopy = this.state.experienceList;
+    this.setState({
+      experienceList: experienceCopy.filter(
+        (experience) => experience.id !== id
+      ),
     });
   };
 
@@ -121,9 +146,10 @@ class App extends Component {
             />
           );
         })}
+        {console.log(educationList)}
         <div onClick={this.addEducation}>Add Education</div>
 
-        {experienceList.map((experience) => {
+        {experienceList.map((experience, i) => {
           return (
             <Experience
               id={experience.id}
@@ -131,12 +157,14 @@ class App extends Component {
               company={experience.company}
               position={experience.position}
               mainTask={experience.mainTask}
-              handleExperience={this.handleExperience}
+              handleExperience={(e) => this.handleExperience(e, i)}
+              removeExperience={this.removeExperience}
             />
           );
         })}
-
+        {console.log(experienceList)}
         <div onClick={this.addExperience}>Add Experience</div>
+        <button>Submit Form</button>
       </div>
     );
   }

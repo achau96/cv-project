@@ -26,12 +26,23 @@ const Experience = (props) => {
           onChange={props.handleExperience}
         ></textarea>
         <div className="dateInput">
-          From: <input type="date"></input>
+          From:{' '}
+          <input
+            type="date"
+            name="startDate"
+            onChange={props.handleExperience}
+          ></input>
         </div>
         <div className="dateInput">
-          To:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="date"></input>
+          To:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input
+            type="date"
+            name="startDate"
+            onChange={props.handleExperience}
+          ></input>
         </div>
       </form>
+      <div onClick={(e) => props.removeExperience(e, props.id)}>Remove</div>
     </div>
   );
 };

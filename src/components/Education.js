@@ -34,10 +34,20 @@ const Education = (props) => {
           onChange={props.handleEducation}
         ></input>
         <div className="dateInput">
-          From: <input type="date"></input>
+          From:{' '}
+          <input
+            type="date"
+            name="startDate"
+            onChange={props.handleEducation}
+          ></input>
         </div>
         <div className="dateInput">
-          To:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="date"></input>
+          To:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input
+            type="date"
+            name="endDate"
+            onChange={props.handleEducation}
+          ></input>
         </div>
         <div onClick={(e) => props.removeEducation(e, props.id)}>Remove</div>
       </form>
