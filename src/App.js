@@ -10,19 +10,22 @@ class App extends Component {
 
     this.state = {
       counterID: 0,
+      experienceCounter: 0,
       educationList: [{ id: 0, school: '', program: '', degree: '', city: '' }],
+      experienceList: [
+        {
+          id: 0,
+          company: '',
+          position: '',
+          mainTask: '',
+        },
+      ],
       general: {
         name: '',
         email: '',
         number: '',
         address: '',
         description: '',
-      },
-      education: {
-        school: '',
-        program: '',
-        degree: '',
-        city: '',
       },
       experience: {
         company: '',
@@ -75,13 +78,24 @@ class App extends Component {
 
   addExperience = () => {
     console.log('hello');
+    this.setState((prevState) => {
+      return {
+        experienceCounter: prevState.experienceCounter + 1,
+        experienceList: this.state.experienceList.concat({
+          id: this.state.experienceCounter + 1,
+          company: '',
+          position: '',
+          mainTask: '',
+        }),
+      };
+    });
   };
 
   render() {
     const { name, email, number, address, description } = this.state.general;
     // const { school, program, degree, city } = this.state.education;
-    const { company, position, mainTask } = this.state.experience;
-    const { educationList } = this.state;
+    // const { company, position, mainTask } = this.state.experience;
+    const { educationList, experienceList } = this.state;
     return (
       <div className="App">
         <Header />
@@ -107,16 +121,22 @@ class App extends Component {
             />
           );
         })}
-        {console.log(educationList)}
         <div onClick={this.addEducation}>Add Education</div>
 
-        <Experience
-          company={company}
-          position={position}
-          mainTask={mainTask}
-          handleExperience={this.handleExperience}
-        />
-        <button onClick={this.addExperience}>Add Experience</button>
+        {experienceList.map((experience) => {
+          return (
+            <Experience
+              id={experience.id}
+              key={experience.id}
+              company={experience.company}
+              position={experience.position}
+              mainTask={experience.mainTask}
+              handleExperience={this.handleExperience}
+            />
+          );
+        })}
+
+        <div onClick={this.addExperience}>Add Experience</div>
       </div>
     );
   }
