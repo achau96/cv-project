@@ -1,5 +1,4 @@
 import React from 'react';
-import '../styles/General.css';
 
 const General = (props) => {
   return (

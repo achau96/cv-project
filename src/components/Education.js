@@ -49,8 +49,13 @@ const Education = (props) => {
             onChange={props.handleEducation}
           ></input>
         </div>
-        <div onClick={(e) => props.removeEducation(e, props.id)}>Remove</div>
       </form>
+      <div
+        className="remove"
+        onClick={(e) => props.removeEducation(e, props.id)}
+      >
+        Remove
+      </div>
     </div>
   );
 };

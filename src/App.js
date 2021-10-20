@@ -3,6 +3,7 @@ import General from './components/General';
 import Education from './components/Education';
 import Experience from './components/Experience';
 import Header from './components/Header';
+import './styles/styles.css';
 
 class App extends Component {
   constructor(props) {
@@ -38,11 +39,6 @@ class App extends Component {
         number: '',
         address: '',
         description: '',
-      },
-      experience: {
-        company: '',
-        position: '',
-        mainTask: '',
       },
     };
   }
@@ -91,7 +87,6 @@ class App extends Component {
   };
 
   addExperience = () => {
-    console.log('hello');
     this.setState((prevState) => {
       return {
         experienceCounter: prevState.experienceCounter + 1,
@@ -116,10 +111,11 @@ class App extends Component {
     });
   };
 
+  submitForm = (e) => {
+    console.log(this.state);
+  };
   render() {
     const { name, email, number, address, description } = this.state.general;
-    // const { school, program, degree, city } = this.state.education;
-    // const { company, position, mainTask } = this.state.experience;
     const { educationList, experienceList } = this.state;
     return (
       <div className="App">
@@ -147,7 +143,9 @@ class App extends Component {
           );
         })}
         {console.log(educationList)}
-        <div onClick={this.addEducation}>Add Education</div>
+        <div className="add" onClick={this.addEducation}>
+          Add Education
+        </div>
 
         {experienceList.map((experience, i) => {
           return (
@@ -163,8 +161,12 @@ class App extends Component {
           );
         })}
         {console.log(experienceList)}
-        <div onClick={this.addExperience}>Add Experience</div>
-        <button>Submit Form</button>
+        <div className="add" onClick={this.addExperience}>
+          Add Experience
+        </div>
+        <div className="submit" onClick={this.submitForm}>
+          Submit Form
+        </div>
       </div>
     );
   }

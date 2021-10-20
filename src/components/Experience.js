@@ -41,8 +41,13 @@ const Experience = (props) => {
             onChange={props.handleExperience}
           ></input>
         </div>
+        <div
+          className="remove"
+          onClick={(e) => props.removeExperience(e, props.id)}
+        >
+          Remove
+        </div>
       </form>
-      <div onClick={(e) => props.removeExperience(e, props.id)}>Remove</div>
     </div>
   );
 };
