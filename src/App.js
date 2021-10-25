@@ -1,135 +1,129 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import General from './components/General';
 import Education from './components/Education';
 import Experience from './components/Experience';
 import Header from './components/Header';
 import './styles/styles.css';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
+const App = () => {
+  // const [educationId, setEducationId] = useState(0);
+  // const [experienceId, setExperienceId] = useState(0);
+  // const [educationList, setEducationList] = useState([
+  //   {
+  //     id: 0,
+  //     school: '',
+  //     program: '',
+  //     degree: '',
+  //     city: '',
+  //     startDate: '',
+  //     endDate: '',
+  //   },
+  // ]);
+  // const [experienceList, setExperienceList] = useState([
+  //   {
+  //     id: 0,
+  //     company: '',
+  //     position: '',
+  //     mainTask: '',
+  //     startDate: '',
+  //     endDate: '',
+  //   },
+  // ]);
+  const [general, setGeneral] = useState({
+    name: '',
+    email: '',
+    number: '',
+    address: '',
+    description: '',
+  });
 
-    this.state = {
-      counterID: 0,
-      experienceCounter: 0,
-      educationList: [
-        {
-          id: 0,
-          school: '',
-          program: '',
-          degree: '',
-          city: '',
-          startDate: '',
-          endDate: '',
-        },
-      ],
-      experienceList: [
-        {
-          id: 0,
-          company: '',
-          position: '',
-          mainTask: '',
-          startDate: '',
-          endDate: '',
-        },
-      ],
-      general: {
-        name: '',
-        email: '',
-        number: '',
-        address: '',
-        description: '',
-      },
-    };
-  }
-
-  handleGeneral = (e) => {
-    this.setState({
-      general: { [e.target.name]: e.target.value },
-    });
+  const handleGeneral = (e) => {
+    setGeneral((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
   };
 
-  //copying array of objects and setting whole array to state
-  handleEducation = (e, i) => {
-    let educationCopy = this.state.educationList;
-    educationCopy[i][e.target.name] = e.target.value;
-    this.setState({ educationList: educationCopy });
-  };
+  // //copying array of objects and setting whole array to state
+  // handleEducation = (e, i) => {
+  //   let educationCopy = this.state.educationList;
+  //   educationCopy[i][e.target.name] = e.target.value;
+  //   this.setState({ educationList: educationCopy });
+  // };
 
-  handleExperience = (e, i) => {
-    let experienceCopy = this.state.experienceList;
-    experienceCopy[i][e.target.name] = e.target.value;
-    this.setState({ experienceList: experienceCopy });
-  };
+  // handleExperience = (e, i) => {
+  //   let experienceCopy = this.state.experienceList;
+  //   experienceCopy[i][e.target.name] = e.target.value;
+  //   this.setState({ experienceList: experienceCopy });
+  // };
 
-  addEducation = () => {
-    this.setState((prevState) => {
-      return {
-        counterID: prevState.counterID + 1,
-        educationList: this.state.educationList.concat({
-          id: this.state.counterID + 1,
-          school: '',
-          program: '',
-          degree: '',
-          city: '',
-          startDate: '',
-          endDate: '',
-        }),
-      };
-    });
-  };
+  // addEducation = () => {
+  //   this.setState((prevState) => {
+  //     return {
+  //       counterID: prevState.counterID + 1,
+  //       educationList: this.state.educationList.concat({
+  //         id: this.state.counterID + 1,
+  //         school: '',
+  //         program: '',
+  //         degree: '',
+  //         city: '',
+  //         startDate: '',
+  //         endDate: '',
+  //       }),
+  //     };
+  //   });
+  // };
 
-  removeEducation = (e, id) => {
-    let educationCopy = this.state.educationList;
-    this.setState({
-      educationList: educationCopy.filter((education) => education.id !== id),
-    });
-  };
+  // removeEducation = (e, id) => {
+  //   let educationCopy = this.state.educationList;
+  //   this.setState({
+  //     educationList: educationCopy.filter((education) => education.id !== id),
+  //   });
+  // };
 
-  addExperience = () => {
-    this.setState((prevState) => {
-      return {
-        experienceCounter: prevState.experienceCounter + 1,
-        experienceList: this.state.experienceList.concat({
-          id: this.state.experienceCounter + 1,
-          company: '',
-          position: '',
-          mainTask: '',
-          startDate: '',
-          endDate: '',
-        }),
-      };
-    });
-  };
+  // addExperience = () => {
+  //   this.setState((prevState) => {
+  //     return {
+  //       experienceCounter: prevState.experienceCounter + 1,
+  //       experienceList: this.state.experienceList.concat({
+  //         id: this.state.experienceCounter + 1,
+  //         company: '',
+  //         position: '',
+  //         mainTask: '',
+  //         startDate: '',
+  //         endDate: '',
+  //       }),
+  //     };
+  //   });
+  // };
 
-  removeExperience = (e, id) => {
-    let experienceCopy = this.state.experienceList;
-    this.setState({
-      experienceList: experienceCopy.filter(
-        (experience) => experience.id !== id
-      ),
-    });
-  };
+  // removeExperience = (e, id) => {
+  //   let experienceCopy = this.state.experienceList;
+  //   this.setState({
+  //     experienceList: experienceCopy.filter(
+  //       (experience) => experience.id !== id
+  //     ),
+  //   });
+  // };
 
-  submitForm = (e) => {
-    console.log('This is supposed to push data onto a backend');
-    console.log(this.state);
-  };
-  render() {
-    const { name, email, number, address, description } = this.state.general;
-    const { educationList, experienceList } = this.state;
-    return (
-      <div className="App">
-        <Header />
-        <General
-          name={name}
-          email={email}
-          number={number}
-          address={address}
-          description={description}
-          handleGeneral={this.handleGeneral}
-        />
-        {educationList.map((education, i) => {
+  // submitForm = (e) => {
+  //   console.log('This is supposed to push data onto a backend');
+  //   console.log(this.state);
+  // };
+
+  return (
+    <div className="App">
+      <Header />
+      <General
+        name={general.name}
+        email={general.email}
+        number={general.number}
+        address={general.address}
+        description={general.description}
+        handleGeneral={handleGeneral}
+      />
+      {console.log(general)}
+      {/* {educationList.map((education, i) => {
           return (
             <Education
               id={education.id}
@@ -167,10 +161,9 @@ class App extends Component {
         </div>
         <div className="submit" onClick={this.submitForm}>
           Submit Form
-        </div>
-      </div>
-    );
-  }
-}
+        </div> */}
+    </div>
+  );
+};
 
 export default App;
